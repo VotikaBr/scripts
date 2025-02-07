@@ -26,7 +26,6 @@ source ~/.profile
 
 # Testa as versões do ADB e Fastboot
 adb version
-fastboot version
 
 # Instala e configura o TMUX e o XRDP para acesso remoto
 sudo apt install -y tmux xrdp xfce4 xfce4-goodies
@@ -64,12 +63,13 @@ ccache -M 50G
 ccache -o compression=true
 
 # Inicializa repositório do Android
-mkdir -p ~/crdroid
-cd ~/crdroid
-repo init 
+mkdir -p ~/android
+cd ~/android
 
+repo init -u https://github.com/SuperiorOS/manifest.git -b fifteen-los -m stable/latest.xml --git-lfs
+    
 # Clona o manifesto local
-git clone 
+git clone https://github.com/VotikaBr/local_manifest_pstar.git .repo/local_manifests
 
 # Sincroniza repositórios com a quantidade máxima de núcleos disponíveis
 repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
