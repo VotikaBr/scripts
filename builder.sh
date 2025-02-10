@@ -66,8 +66,8 @@ ccache -o compression=true
 mkdir -p ~/android
 cd ~/android
 
-repo init -u https://github.com/SuperiorOS/manifest.git -b fifteen-los -m stable/latest.xml --git-lfs
-    
+repo init -u https://github.com/crdroidandroid/android.git -b 15.0 --git-lfs
+
 # Clona o manifesto local
 git clone https://github.com/VotikaBr/local_manifest_pstar.git .repo/local_manifests
 
@@ -75,5 +75,7 @@ git clone https://github.com/VotikaBr/local_manifest_pstar.git .repo/local_manif
 repo sync -c --no-clone-bundle --optimized-fetch --prune --force-sync -j$(nproc --all)
 
 # Carrega ambiente de build do Android
+. build/envsetup.sh
+breakfast pstar
 
 echo "Configuração concluída!"
